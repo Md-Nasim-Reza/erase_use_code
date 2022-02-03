@@ -1,0 +1,40 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,i;
+    cin>>n;
+    map<int, int>mp;
+    int ar[n+1];
+    for(i=0; i<n; i++){
+        cin>>ar[i];
+        mp[ar[i]]++;
+    }
+    vector<int>v;
+    while(mp.size()!=0){
+        auto it = mp.end();
+        it--;
+        int valu = it->first;
+        v.push_back(valu);
+        for(i=1; i*i<=valu; i++){
+            if(valu%i==0){
+                int x=i;
+                int y=valu/i;
+                mp[x]--;
+                if(mp[x]==0){
+                    mp.erase(mp.find(x));
+                }
+                if(x!=y){
+                    mp[y]--;
+                    if(mp[y]==0){
+                        mp.erase(mp.find(y));
+                    }
+                }
+            }
+        }
+    }
+    cout<<v.size()<<endl;
+    for(auto x:v)
+        cout<<x<<" ";
+    cout<<endl;
+}
