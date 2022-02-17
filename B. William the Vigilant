@@ -1,0 +1,52 @@
+//Codeforces problem
+
+#include<bits/stdc++.h>
+#define ll long long
+#define ull unsigned long long
+
+
+using namespace std;
+
+void solve(){
+   int n,p,cnt=0,i;
+   string st,x;
+   cin>>n>>p;
+   cin>>st;
+   x+=st[0],x+=st[1],x+=st[2];
+   if(x=="abc") cnt++;
+   for(i=3; i<n; i++){
+        x.erase(x.begin());
+        x+=st[i];
+        if(x=="abc")
+            cnt++;
+   }
+   while(p--){
+        int a;
+        char b;
+        cin>>a>>b;
+        a--;
+        int y=a-2;
+        if(y<0) y=0;
+        for(i=y; i<=a; i++){
+            string z;
+            z+=st[i];
+            z+=st[i+1];
+            z+=st[i+2];
+            if(z=="abc") cnt--;
+        }
+        st[a]=b;
+        for(i=y; i<=a; i++){
+            string z;
+            z+=st[i];
+            z+=st[i+1];
+            z+=st[i+2];
+            if(z=="abc") cnt++;
+        }
+        cout<<cnt<<endl;
+   }
+}
+int main(){
+
+        solve();
+return 0;
+}
